@@ -1,25 +1,34 @@
 <template>
     <div>
         <main-header />
-        <search v-on:search-query="searchCocktail" />
         <cocktail :name="cocktail.strDrink" :thumbnail="cocktail.strDrinkThumb" :instructions="cocktail.strInstructions" />
     </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
 import MainHeader from '../components/MainHeader.vue';
-import Search from '../components/Search.vue';
+import Cocktail from '../components/Cocktail.vue';
 
-export default Vue.extend({
+export default {
+  components: { MainHeader, Cocktail },
     data() {
         return {
             cocktail: {}
         }
     },
+    async created() {
+        try {
+            const cocktail = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+            const result = await cocktail.json();
+            console.log(result);
+            this.cocktail = result.drinks[0];
+        } catch (e) {
+            console.log(e);
+        }
+    },
     head() {
         return {
-            title: "Cocktails",
+            title: "Random cocktail",
             meta: [
                 {
                     hid: "description",
@@ -28,21 +37,8 @@ export default Vue.extend({
                 }
             ]
         }
-    },
-  components: { MainHeader, Search },
-  methods: {
-        async searchCocktail(query) {
-            try {
-                const cocktail = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`);
-                const result = await cocktail.json();
-                console.log(result);
-                this.cocktail = result.drinks[0];
-            } catch (e) {
-                console.log(e);
-            }
-        }
     }
-  })
+}
 </script>
 
 <style>
