@@ -31,7 +31,7 @@ export default Vue.extend({
     },
   components: { MainHeader, Search },
   methods: {
-        async searchCocktail(query) {
+        async searchCocktail(query: String) {
             try {
                 const cocktail = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`);
                 const result = await cocktail.json();
@@ -53,8 +53,9 @@ export default Vue.extend({
     }
 
     body {
-        background: linear-gradient(rgb(203, 53, 107), rgb(189, 63, 50));
-        height: 100vh;
-        width: 100vw;
+        background: repeating-linear-gradient(rgb(34, 193, 195), rgb(253, 187, 45) 100vh, rgb(253, 187, 45) 100vh, rgb(34, 193, 195) 200vh);
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow-x: hidden;
     }
 </style>

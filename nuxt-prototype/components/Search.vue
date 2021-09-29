@@ -32,6 +32,7 @@ export default {
 
     input[type="text"] {
         padding: 0.5em 1em;
+        padding-right: 5vw;
         border: none;
         margin-left: 60px;
         margin-top: 25px;

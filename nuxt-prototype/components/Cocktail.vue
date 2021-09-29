@@ -31,18 +31,20 @@ export default {
     }
 
     p {
-        margin-top: 25px;
-        margin-left: 20px;
+        margin: 25px 0 25px 20px;
     }
 
     .name-desc {
         margin: 0 50px;
         margin-top: 30px;
+        margin-left: 100px;
     }
     
     img {
         max-width: 33%;
+        height: 100%;
         margin: 0 50px;
         margin-top: 30px;
+        box-shadow: 2px 2px 10px black;
     }
 </style>

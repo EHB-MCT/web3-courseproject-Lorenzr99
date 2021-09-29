@@ -28,8 +28,8 @@ export default {
         margin-top: 5vh;
         margin-left: 4vw;
         color: white;
-        font-size: 5vw;
-        animation: shadow 3s ease infinite alternate;
+        font-size: 5.5vw;
+        animation: shadow 5s ease infinite alternate;
         transform: rotate(-10deg);
     }
 
@@ -39,7 +39,7 @@ export default {
     }
 
     ul {
-        width: 275px;
+        width: 25vw;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -55,7 +55,7 @@ export default {
         color: white;
         transition: .3s ease;
         cursor: pointer;
-        font-size: 2vw;
+        font-size: 2.5vw;
         transition: .8s ease;
     }
 
@@ -64,9 +64,11 @@ export default {
     }
 
     .middle {
-        width: 2px;
+        width: 2.5vw;
         height: 2.5vw;
-        background-color: white;
+        background-image: url('../static/palm-tree.png');
+        background-size: contain;
+        cursor: auto;
     }
 
     a {

@@ -42,15 +42,5 @@ export default {
 </script>
 
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
 
-    body {
-        background: linear-gradient(rgb(203, 53, 107), rgb(189, 63, 50));
-        height: 100vh;
-        width: 100vw;
-    }
 </style>
