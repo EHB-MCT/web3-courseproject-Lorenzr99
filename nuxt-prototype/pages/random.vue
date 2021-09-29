@@ -10,6 +10,7 @@ import MainHeader from '../components/MainHeader.vue';
 import Cocktail from '../components/Cocktail.vue';
 
 export default {
+    transition: 'home',
   components: { MainHeader, Cocktail },
     data() {
         return {
@@ -20,7 +21,6 @@ export default {
         try {
             const cocktail = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
             const result = await cocktail.json();
-            console.log(result);
             this.cocktail = result.drinks[0];
         } catch (e) {
             console.log(e);
@@ -42,5 +42,6 @@ export default {
 </script>
 
 <style>
-
+    .home-enter-active, .home-leave-active { transition: transform 1s; }
+    .home-enter, .home-leave-active { transform: translateY(-100vh); }
 </style>

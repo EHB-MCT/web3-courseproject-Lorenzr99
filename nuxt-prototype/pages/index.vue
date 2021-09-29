@@ -35,7 +35,6 @@ export default Vue.extend({
             try {
                 const cocktail = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`);
                 const result = await cocktail.json();
-                console.log(result);
                 this.cocktail = result.drinks[0];
             } catch (e) {
                 console.log(e);
