@@ -41,6 +41,10 @@
     transition: .3s ease;
 }
 
+.question-submit:hover {
+    box-shadow: 1px 1px 3px black;
+}
+
 .question-title {
     font-family: 'Permanent Marker', cursive;
     text-align: center;
