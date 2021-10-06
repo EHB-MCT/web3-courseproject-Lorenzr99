@@ -6,7 +6,13 @@ import { Answer } from './components/Answer/Answer';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {madeChoice: false, enteredName: false, nameValue: ''};
+    this.state = {
+      madeChoice: false,
+      profileChoice: '',
+      enteredName: false,
+      profileName: '',
+      nameValue: ''
+    };
     this.handleChoice = this.handleChoice.bind(this);
     this.handleName = this.handleName.bind(this);
     this.updateNameValue = this.updateNameValue.bind(this);
@@ -14,8 +20,7 @@ class App extends React.Component {
 
   handleChoice(e) {
     console.log(e.target.className);
-    sessionStorage.setItem("profile-choice", e.target.className);
-    this.setState({madeChoice: true});
+    this.setState({madeChoice: true, profileChoice: e.target.className});
   }
 
   updateNameValue(e) {
@@ -25,8 +30,8 @@ class App extends React.Component {
   handleName(e) {
     e.preventDefault();
     console.log(this.state.nameValue);
-    sessionStorage.setItem("profile-name", this.state.nameValue);
-    this.setState({enteredName: true});
+    let profileName = this.state.nameValue;
+    this.setState({enteredName: true, profileName});
   }
 
   render() {
@@ -55,12 +60,12 @@ class App extends React.Component {
     }
     
     else {
-      if(sessionStorage.getItem("profile-choice") === "profile-ask") {
+      if(this.state.profileChoice === "profile-ask") {
         return (
            <Question />
         );
       }
-      else if(sessionStorage.getItem("profile-choice") === "profile-answer") {
+      else if(this.state.profileChoice === "profile-answer") {
         return (
           <Answer />
        );
