@@ -16,6 +16,11 @@ class App extends React.Component {
     this.handleChoice = this.handleChoice.bind(this);
     this.handleName = this.handleName.bind(this);
     this.updateNameValue = this.updateNameValue.bind(this);
+    this.skipName = this.skipName.bind(this);
+  }
+
+  skipName() {
+    this.setState({madeChoice: true, enteredName: true})
   }
 
   handleChoice(e) {
@@ -52,7 +57,7 @@ class App extends React.Component {
     else if(this.state.enteredName === false) {
       return (
         <div className="App">
-          <h1 className="title">QUIZ-APP</h1>
+          <h1 className="title" onClick={this.skipName}>QUIZ-APP</h1>
             <form className="profile-name" onSubmit={this.handleName}>
               <input type="text" onChange={this.updateNameValue} className="profile-name-input" placeholder="Geef een gebruikersnaam in"></input>
               <input type="submit" value={this.state.nameValue || "GEEF NAAM IN"} className="profile-name-submit"></input>
