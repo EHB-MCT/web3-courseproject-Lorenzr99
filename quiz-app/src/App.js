@@ -30,8 +30,10 @@ class App extends React.Component {
   handleName(e) {
     e.preventDefault();
     console.log(this.state.nameValue);
-    let profileName = this.state.nameValue;
-    this.setState({enteredName: true, profileName});
+    if(this.state.nameValue !== "") {
+      let profileName = this.state.nameValue;
+      this.setState({enteredName: true, profileName});
+    }
   }
 
   render() {
