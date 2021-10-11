@@ -61,7 +61,7 @@ class App extends React.Component {
         <div className="App">
           <h1 className="title" onClick={this.skipName}>QUIZ-APP</h1>
             <form className="profile-name" onSubmit={this.handleName}>
-              <input type="text" onChange={this.updateNameValue} className="profile-name-input" placeholder="Geef een gebruikersnaam in"></input>
+              <input type="text" onChange={this.updateNameValue} className="profile-name-input" placeholder="Geef een gebruikersnaam in" autoFocus></input>
               <input type="submit" value={this.state.nameValue || "GEEF NAAM IN"} className="profile-name-submit"></input>
             </form>
         </div>
