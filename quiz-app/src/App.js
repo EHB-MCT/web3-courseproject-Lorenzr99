@@ -20,7 +20,8 @@ class App extends React.Component {
   }
 
   skipName() {
-    this.setState({madeChoice: true, enteredName: true})
+    this.setState({madeChoice: true, enteredName: true});
+    sessionStorage.setItem("profile-name", "Test");
   }
 
   handleChoice(e) {
@@ -38,6 +39,7 @@ class App extends React.Component {
     if(this.state.nameValue !== "") {
       let profileName = this.state.nameValue;
       this.setState({enteredName: true, profileName});
+      sessionStorage.setItem("profile-name", profileName);
     }
   }
 
