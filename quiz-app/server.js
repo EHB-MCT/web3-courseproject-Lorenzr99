@@ -16,6 +16,7 @@ const port = 3001;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const questionRouter = express.Router();
+const answerRouter = express.Router();
 
 app.use(cors()); 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,7 +46,32 @@ questionRouter.route('/questions')
         }
     });
 
+answerRouter.route('/answers')
+    .get((req,res) => {
+        const database = client.db("quiz-app");
+        const answers = database.collection("answers");
+        answers.find().toArray(function (err, docs) {
+            console.log("Found the following documents");
+            console.log(docs);
+            res.json({message: "ALL ANSWERS FROM DATABASE", docs});
+        });
+    })
+    .post(async (req,res) => {
+        try {
+            const database = client.db("quiz-app");
+            const answers = database.collection("answers");
+            const result = await answers.insertOne(req.body);
+
+            console.log(`A document was inserted with the _id: ${result.insertedId}`);
+            res.json({message: "ANSWER POSTED"});
+        } catch (e) {
+            console.error(e);
+            res.json({message: "ANSWER POST FAILED"});
+        }
+    });
+
 app.use('/api', questionRouter);
+app.use('/api', answerRouter);
 
 app.listen(process.env.PORT || port, async () => {
     try {
