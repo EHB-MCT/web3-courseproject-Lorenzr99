@@ -1,6 +1,7 @@
 import './Answer.scss';
 import { Header } from '../Header/Header';
 import React from 'react';
+import Swal from 'sweetalert2';
 
 export class Answer extends React.Component {
   constructor(props) {
@@ -16,9 +17,14 @@ export class Answer extends React.Component {
   }
     
   async getQuestions() {
-    await fetch('http://localhost:3001/api/questions')
-    .then(response => response.json())
-    .then(response => this.setState({questions: response.docs}));
+    try {
+      await fetch('http://localhost:3001/api/questions')
+      .then(response => response.json())
+      .then(response => this.setState({questions: response.docs}));
+    } catch (e) {
+      console.error(e);
+      this.setState({questions: [{question: 'KON VRAGEN NIET OPHALEN'}]});
+    }
   }
 
   handleInputChange(e) {
@@ -31,6 +37,8 @@ export class Answer extends React.Component {
 
     async postAnswer(e, id, question) {
       e.preventDefault();
+      console.log("QUESTION ID: " + id);
+      console.log("ANSWER: " + this.state[id]);      
       if(this.state[id]) {
         try {
           await fetch('http://localhost:3001/api/answers', {
@@ -47,13 +55,21 @@ export class Answer extends React.Component {
               }),
             })
             .then(response => response.json())
-            .then(response => console.log(response.message));
+            .then(response => {
+              console.log(response.message);
+              Swal.fire(
+                'Beantwoord',
+                'Je antwoord is ingediend en kan nu bekeken worden!',
+                'success'
+              );
+              this.setState({
+                [id]: true
+              });
+            });
         } catch (e) {
           console.error(e.message);
         }
       }
-      console.log("QUESTION ID: " + id);
-      console.log("ANSWER: " + this.state[id]);
     }
 
     render() {
@@ -64,15 +80,19 @@ export class Answer extends React.Component {
         <div className="answer-title">
           {questions.map(question => {
             //const idWithoutNumbers = question._id.replace(/[0-9]/g, '');
-            return (
-              <div className="question-div" key={question._id}>
-                <span>{question.question}</span>
-                <form className="answer-form" onSubmit={e => this.postAnswer(e, question._id, question.question)}>
-                  <input type="text" onChange={this.handleInputChange} name={question._id} className="answer-input" placeholder="Typ hier je antwoord..."></input>
-                  <input type="submit" className="answer-submit" value="Antwoord indienen"></input>
-                </form>
-              </div>
-            );
+            if(this.state[question._id] === true) {
+              return ('');
+            } else {
+              return (
+                <div className="question-div" key={question._id}>
+                  <span>{question.question}</span>
+                  <form className="answer-form" onSubmit={e => this.postAnswer(e, question._id, question.question)}>
+                    <input type="text" onChange={this.handleInputChange} name={question._id} className="answer-input" placeholder="Typ hier je antwoord..."></input>
+                    <input type="submit" className="answer-submit" value="Antwoord indienen"></input>
+                  </form>
+                </div>
+              );              
+            }
           })}
         </div>
       </div>
