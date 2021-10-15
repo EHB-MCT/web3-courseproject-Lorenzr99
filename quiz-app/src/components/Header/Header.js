@@ -8,7 +8,7 @@ export const Header = () => {
 
     return (
       <header className="Header">
-        <img src={home} className="home" onClick={reloadPage} alt="back to home button" width="35px" height="auto"></img>
+        <img src={home} className="home" onClick={reloadPage} alt="back to home button"></img>
         <h1 className="logo">QUIZ-APP</h1>
       </header>
     );
