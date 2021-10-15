@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+
+.overview-title {
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+    font-size: 3vw;
+    margin-bottom: 15px;
+    padding: 6px 0;
+    margin-top: 0;
+    border-top: 5px solid black;
+    background: linear-gradient(to right, rgb(235, 51, 73), rgb(244, 92, 67));
+}
+
+.question-div {
+    text-align: center;
+}
+
+.question-title {
+    font-size: 3vw;
+    cursor: pointer;
+    user-select: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.answer {
+    font-family: 'Cookie', cursive;
+    font-size: 3vw;
+}
+
+li {
+    list-style: none;
+}
+
+.answer-expected {
+    font-size: 3.5vw;
+}
