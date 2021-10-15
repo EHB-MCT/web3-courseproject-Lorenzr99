@@ -12,6 +12,7 @@
     text-shadow: 2px 2px 3px black;
     letter-spacing: 7px;
     margin-top: 0;
+    margin-bottom: 15vh;
     text-align: center;
     padding-top: 0.3em;
     font-family: 'Permanent Marker', cursive;
@@ -19,18 +20,18 @@
 
 .profile-choice {
     display: flex;
-    width: 60%;
-    height: 50%;
+    width: 50%;
+    height: 30%;
     margin: auto;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.profile-ask, .profile-answer {
+.profile-ask, .profile-answer, .overview {
     font-family: 'Permanent Marker', cursive;
     font-size: 2vw;
-    width: 25vw;
-    max-width: 450px;
+    width: 24vw;
     height: 75px;
     background-color: transparent;
     border: 3px solid white;
@@ -41,7 +42,11 @@
     cursor: pointer;
 }
 
-.profile-ask:hover, .profile-answer:hover {
+.overview {
+    flex-basis: 100%;
+}
+
+.profile-ask:hover, .profile-answer:hover, .overview:hover {
     background-color: white;
     color: black;
 }

@@ -2,6 +2,7 @@ import './App.scss';
 import React from "react";
 import { Question } from './components/Question/Question';
 import { Answer } from './components/Answer/Answer';
+import { Overview } from './components/Overview/Overview';
 
 class App extends React.Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class App extends React.Component {
             <div className="profile-choice">
               <button className="profile-ask" onClick={this.handleChoice}>Vraag stellen</button>
               <button className="profile-answer" onClick={this.handleChoice}>Vraag beantwoorden</button>
+              <button className="overview" onClick={this.handleChoice}>Overzicht vragen + antwoorden</button>
             </div>
         </div>
       );
@@ -78,6 +80,11 @@ class App extends React.Component {
         return (
           <Answer />
        );
+      }
+      else if(this.state.profileChoice === "overview") {
+        return (
+          <Overview />
+        );
       }
     }
   }
