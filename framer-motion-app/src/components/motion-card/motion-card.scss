@@ -1,17 +1,26 @@
 .Motion-Card {
-    width: 275px;
+    width: 250px;
     height: 150px;
-    background-color: turquoise;
-    border-radius: 8px;
     cursor: grab;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .card-title {
+    font-size: 18pt;
+    color: white;
     text-align: center;
-    margin-top: 0;
+    margin: 0;
+    margin-bottom: -1px;
     padding-top: 5px;
+    background-color: transparent;
+    border: 4px solid white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.card-content {
     background-color: white;
-    border: 4px solid turquoise;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    height: 100%;
+    margin: 0;
 }
