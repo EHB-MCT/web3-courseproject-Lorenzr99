@@ -1,0 +1,11 @@
+.App, .App-Ref {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.App-Ref {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
