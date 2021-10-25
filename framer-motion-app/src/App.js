@@ -14,8 +14,8 @@ const App = () => {
         .then(response => {
           if(response) {
             console.log(response)
-            const allBreeds = response.map(({ id, name, origin, life_span, temperament, bred_for }) => ({
-              id, name, origin, life_span, temperament, bred_for,
+            const allBreeds = response.map(({ id, name, image, life_span, temperament, bred_for }) => ({
+              id, name, image, life_span, temperament, bred_for,
             }));
             setDogs(randomizeDogs(allBreeds));
           }
@@ -32,7 +32,15 @@ const App = () => {
     <div className="App">
       <motion.div className="App-Ref" ref={constraintsRef}>
         {dogs.slice(0,3).map(dog => {
-          return <MotionCard key={dog.id} title={dog.name} constraint={constraintsRef} />
+          return <MotionCard 
+          key={dog.id} 
+          title={dog.name} 
+          image={dog.image}
+          life_span={dog.life_span}
+          temperament={dog.temperament}
+          bred_for={dog.bred_for}
+          constraint={constraintsRef} 
+          />
         })}
       </motion.div>
     </div>
