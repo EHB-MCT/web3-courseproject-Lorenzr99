@@ -38,6 +38,18 @@ export const MotionCard = (props) => {
         }
     };
 
+    const checkDragEnd = (event, info) => {
+        if(info.point.x >= window.innerWidth - 200 && info.point.y >= window.innerHeight - 200) {
+            let removedBreeds = [];
+            if(localStorage.getItem("removed-breeds")) {
+                removedBreeds = JSON.parse(localStorage.getItem("removed-breeds"));
+                removedBreeds.push(props.key);
+                localStorage.setItem("removed-breeds", JSON.stringify(removedBreeds));
+            } 
+            console.log("%cTRASH!", "color: red");
+        }
+    }
+
     return (
         <motion.div 
             className="Motion-Card"
@@ -48,6 +60,7 @@ export const MotionCard = (props) => {
             animate={selected ? 'open' : 'closed'}
             drag
             dragConstraints={props.constraint}
+            onDragEnd={checkDragEnd}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9, cursor: 'grabbing' }}
             >

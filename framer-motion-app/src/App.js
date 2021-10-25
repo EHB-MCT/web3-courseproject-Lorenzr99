@@ -2,11 +2,13 @@ import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import './App.scss';
 import { MotionCard } from './components/motion-card/motion-card';
-import { motionCardService } from './components/motion-card/motion-card.service'; 
+import { motionCardService } from './components/motion-card/motion-card.service';
+import trashCan from '../src/assets/trash-can.png';
 
 const App = () => {
   const constraintsRef = useRef(null);
   const [dogs, setDogs] = useState([]);
+  const removedBreeds = JSON.parse(localStorage.getItem("removed-breeds"));
 
   useEffect(() => {
       motionCardService
@@ -24,9 +26,17 @@ const App = () => {
         .finally(() => console.log("EFFECT DONE: getAllDogBreeds"));         
   }, []);
 
+  
+
   const randomizeDogs = (dogs) => {
     return dogs.sort(() => 0.5 - Math.random());
   }
+
+  const checkDogs = (dogs) => {
+    removedBreeds.forEach(dog => {
+      
+    })
+  };
 
   return (
     <div className="App">
@@ -43,6 +53,7 @@ const App = () => {
           />
         })}
       </motion.div>
+      <img className="trash-can" src={trashCan} alt="trash can"></img>
     </div>
   );
 }
