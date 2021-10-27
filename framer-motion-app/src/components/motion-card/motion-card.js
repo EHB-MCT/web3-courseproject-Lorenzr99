@@ -20,19 +20,19 @@ export const MotionCard = (props) => {
         if(selected) {
             return (
                 <ul className="ul-content">
-                    <img src={props.image.url} alt="dog breed"></img>
-                    <li className="life-span"><b>Life span: </b>{props.life_span || unavailable}</li>
-                    <li className="temperament"><b>Temperament: </b>{props.temperament || unavailable}</li>
-                    <li className="bred-for"><b>Bred for: </b>{props.bred_for || unavailable}</li>
+                    <img src={props.dog.image.url} alt="dog breed"></img>
+                    <li className="life-span"><b>Life span: </b>{props.dog.life_span || unavailable}</li>
+                    <li className="temperament"><b>Temperament: </b>{props.dog.temperament || unavailable}</li>
+                    <li className="bred-for"><b>Bred for: </b>{props.dog.bred_for || unavailable}</li>
                 </ul>
             );
         } else {
             return (
                 <ul className="ul-content">
-                    <img src={props.image.url} alt="dog breed" hidden></img>
-                    <li className="life-span"><b>Life span: </b>{props.life_span || unavailable}</li>
-                    <li className="temperament"><b>Temperament: </b>{props.temperament || unavailable}</li>
-                    <li className="bred-for"><b>Bred for: </b>{props.bred_for || unavailable}</li>
+                    <img src={props.dog.image.url} alt="dog breed" hidden></img>
+                    <li className="life-span"><b>Life span: </b>{props.dog.life_span || unavailable}</li>
+                    <li className="temperament"><b>Temperament: </b>{props.dog.temperament || unavailable}</li>
+                    <li className="bred-for"><b>Bred for: </b>{props.dog.bred_for || unavailable}</li>
                 </ul>                
             );
         }
@@ -43,9 +43,10 @@ export const MotionCard = (props) => {
             let removedBreeds = [];
             if(localStorage.getItem("removed-breeds")) {
                 removedBreeds = JSON.parse(localStorage.getItem("removed-breeds"));
-                removedBreeds.push(props.key);
-                localStorage.setItem("removed-breeds", JSON.stringify(removedBreeds));
-            } 
+            }
+            removedBreeds.push(props.dog.id);
+            localStorage.setItem("removed-breeds", JSON.stringify(removedBreeds));
+            props.update();
             console.log("%cTRASH!", "color: red");
         }
     }
@@ -64,7 +65,7 @@ export const MotionCard = (props) => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9, cursor: 'grabbing' }}
             >
-            <h1 className="card-title">{props.title}</h1>
+            <h1 className="card-title">{props.dog.name}</h1>
             <div className="card-content">
                 <Content />
             </div>
