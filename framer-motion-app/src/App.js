@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import './App.scss';
 import { MotionCard } from './components/motion-card/motion-card';
@@ -40,9 +40,11 @@ const App = () => {
   return (
     <div className="App">
       <motion.div className="App-Ref" ref={constraintsRef}>
-        {dogs.slice(0,numberOfCards).map(dog => {
-          return <MotionCard key={dog.id} dog={dog} update={checkDogs} constraint={constraintsRef} />
-        })}
+        <AnimatePresence>
+          {dogs.slice(0,numberOfCards).map((dog,index) => (
+            <MotionCard key={dog.id} dog={dog} update={checkDogs} numberOfCards={numberOfCards} index={index} constraint={constraintsRef} />
+          ))}
+        </AnimatePresence>
       </motion.div>
       <img className="trash-can" src={trashCan} alt="trash can"></img>
     </div>

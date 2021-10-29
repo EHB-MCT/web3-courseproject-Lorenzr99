@@ -4,9 +4,11 @@ import { useState } from 'react';
 
 const variants = {
     closed: {
+        opacity: 1,
         height: 'fit-content'
     },
     open: {
+        opacity: 1,
         height: '350px'
     }
 };
@@ -58,9 +60,13 @@ export const MotionCard = (props) => {
             onMouseMove={() => onDrag(true)}
             onMouseUp={() => onSelect(dragged ? selected : !selected)}
             variants={variants}
+            initial={{ height: 0, opacity: 0 }}
             animate={selected ? 'open' : 'closed'}
+            style={{ left: window.innerWidth / (props.numberOfCards + 1) * (props.index + 1) - 125 }}
+            exit={{ height: 0, opacity: 0 }}
             drag
             dragConstraints={props.constraint}
+            dragElastic={0.3}
             onDragEnd={checkDragEnd}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9, cursor: 'grabbing' }}
